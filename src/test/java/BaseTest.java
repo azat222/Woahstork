@@ -15,7 +15,6 @@ public class BaseTest {
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://test.woahstork.com");
         wait = new WebDriverWait(driver,4);
     }
 
