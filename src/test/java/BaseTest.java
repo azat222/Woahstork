@@ -8,14 +8,14 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     WebDriver driver;
-    WebDriverWait wait;
+//    WebDriverWait wait;
 
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,4);
+//        wait = new WebDriverWait(driver,4);
     }
 
     @AfterMethod

@@ -1,3 +1,4 @@
+import Pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,30 +8,16 @@ import org.testng.annotations.Test;
 public class HomePageTests  extends  BaseTest {
 
     @Test
-    public void SignUpSuccessTest () {
+    public void GetVerifiedTest () {
 
-        openHomePage();
-        clickGetVerifiedIcon();
+        HomePage homePage = new HomePage(driver);
 
-        WebElement welcomeBack = getWelcomeBackElement();
+        homePage.openHomePage();
+        homePage.clickGetVerifiedIcon();
+
+        WebElement welcomeBack = homePage.getWelcomeBackElement();
         Assert.assertTrue(welcomeBack.isDisplayed());
 
-    }
-
-    private WebElement getWelcomeBackElement() {
-        return findElement("[content='Welcome Back']");
-    }
-
-    private void clickGetVerifiedIcon() {
-        findElement("[href='/profile']").click();
-    }
-
-    private void openHomePage() {
-        driver.get("https://test.woahstork.com/");
-    }
-
-    private WebElement findElement(String cssLocator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(cssLocator)));
     }
 
 }
