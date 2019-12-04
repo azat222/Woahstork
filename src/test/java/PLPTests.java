@@ -10,13 +10,16 @@ public class PLPTests extends  BaseTest {
     @Test
     public void SignUpSuccessTest () {
 
-        PLPPage plpPage = new PLPPage(driver);
+        String checkoutButtonLabel = new PLPPage(driver)
+                .openPLPPage()
+                .clickCartButton()
+                .getCheckoutButtonLabel();
 
-        plpPage.openPLPPage();
-        plpPage.clickCartButton();
-        WebElement el = plpPage.getCheckoutElement();
+        Assert.assertEquals(checkoutButtonLabel, "CHECKOUT");
 
-        Assert.assertEquals(el.getText(), "CHECKOUT");
+        // Given user is on PLP page
+        // When user clicks Cart button
+        // Then some text should be "CHECKOUT"
     }
 
 }

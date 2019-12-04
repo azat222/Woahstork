@@ -1,3 +1,5 @@
+import Pages.HomePage;
+import Pages.PLPPage;
 import Pages.SignUpPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,8 +29,7 @@ public class SignUpTests extends  BaseTest {
         signUpPage.clickCheckboxTermsAndConditions();
         signUpPage.clickCheckboxHIPAA();
 
-        signUpPage.clickToLoginButton();
-
+        HomePage homePage = signUpPage.clickToLoginButton();
         WebElement phoneNumber = signUpPage.getPhoneNumberElement(); //driver.findElement(By.cssSelector("[label=\"Your Phone Number\"]"));
 
         Assert.assertTrue(phoneNumber.isDisplayed());

@@ -42,9 +42,10 @@ public class SignUpPage extends BasePage {
 
     }
 
-    public void clickToLoginButton(){
+    public HomePage clickToLoginButton(){
         WebElement login_button = findButtonByText("Sign Up");
         login_button.click();
+        return new HomePage(driver);
     }
 
     public void setEmailField(String email){
