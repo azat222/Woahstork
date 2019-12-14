@@ -16,23 +16,50 @@ public class SignUpTests extends  BaseTest {
     @Test(priority = 1)
     public void SignUpSuccessTest () {
 
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.openSignUpPage();
 
         signUpPage.setEmailField(signUpPage.getRandomEmail());
 
         signUpPage.setPasswordField("incorrectPassword");
-        signUpPage.setConfirmPasswordField("incorrectPassword");
-        signUpPage.setZipCode("90066");
+        signUpPage.setUserName(signUpPage.getRandomUsername());
+        signUpPage.clickToLoginButton();
+//        signUpPage.setConfirmPasswordField("incorrectPassword");
+//        signUpPage.setZipCode("90066");
+//
+//        signUpPage.clickCheckboxTermsAndConditions();
+//        signUpPage.clickCheckboxHIPAA();
+//
+//        HomePage homePage = signUpPage.clickToLoginButton();
+//        WebElement phoneNumber = signUpPage.getPhoneNumberElement(); //driver.findElement(By.cssSelector("[label=\"Your Phone Number\"]"));
+//
+//        Assert.assertTrue(phoneNumber.isDisplayed());
 
-        signUpPage.clickCheckboxTermsAndConditions();
-        signUpPage.clickCheckboxHIPAA();
+    }
 
-        HomePage homePage = signUpPage.clickToLoginButton();
-        WebElement phoneNumber = signUpPage.getPhoneNumberElement(); //driver.findElement(By.cssSelector("[label=\"Your Phone Number\"]"));
+    @Test(priority = 1)
+    public void SignUpSuccessTest2 () {
 
-        Assert.assertTrue(phoneNumber.isDisplayed());
+        SignUpPage signUpPage = new SignUpPage(getDriver());
+
+        signUpPage.openSignUpPage();
+
+        signUpPage.setEmailField(signUpPage.getRandomEmail());
+
+        signUpPage.setPasswordField("incorrectPassword");
+        signUpPage.setUserName(signUpPage.getRandomUsername());
+        signUpPage.clickToLoginButton();
+//        signUpPage.setConfirmPasswordField("incorrectPassword");
+//        signUpPage.setZipCode("90066");
+//
+//        signUpPage.clickCheckboxTermsAndConditions();
+//        signUpPage.clickCheckboxHIPAA();
+//
+//        HomePage homePage = signUpPage.clickToLoginButton();
+//        WebElement phoneNumber = signUpPage.getPhoneNumberElement(); //driver.findElement(By.cssSelector("[label=\"Your Phone Number\"]"));
+//
+//        Assert.assertTrue(phoneNumber.isDisplayed());
 
     }
 

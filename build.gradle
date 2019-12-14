@@ -16,10 +16,12 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
     testCompile group: 'org.testng', name: 'testng', version: '7.0.0'
     testCompile 'com.codeborne:selenide:5.5.1'
+
 }
 
 test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
+        systemProperty "browser", System.getProperty("browser")
     }
 }

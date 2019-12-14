@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,15 +13,49 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    WebDriver driver;
+//    WebDriver driver;
     WebDriverWait wait;
 
-    // Local without selenium Grid
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,4);
+    ThreadLocal<RemoteWebDriver> threadDriver;
+
+    @BeforeMethod
+    public void beforeMethodSetup() throws MalformedURLException {
+
+        threadDriver = new ThreadLocal<RemoteWebDriver>();
+
+        DesiredCapabilities dc = new DesiredCapabilities();
+//        dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+        switch (System.getProperty("browser")) {
+            case "safari":
+                dc.setBrowserName(DesiredCapabilities.safari().getBrowserName());
+                break;
+            case "chrome":
+                dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+                break;
+            case "firefox":
+                dc.setBrowserName(DesiredCapabilities.firefox().getBrowserName());
+                break;
+            default:
+                dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+        }
+
+        dc.setPlatform(Platform.MAC);
+
+
+        threadDriver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc));
+        wait = new WebDriverWait(getDriver(),20);
     }
+
+    public WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        getDriver().quit();
+    }
+}
+
 
 
 //   // browserstack
@@ -46,10 +81,6 @@ public class BaseTest {
 //        wait = new WebDriverWait(driver,10);
 //    }
 
-//    Saucelabs
-//    public static final String USERNAME = "azater777";
-//    public static final String ACCESS_KEY = "f4e83c89-1138-48bf-b66d-3749fc1111a4";
-//    public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 
 //    @BeforeMethod
 //    public void beforeMethodSetup() throws MalformedURLException {
@@ -66,8 +97,4 @@ public class BaseTest {
 //        driver.manage().window().maximize();
 //    }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
-}
+

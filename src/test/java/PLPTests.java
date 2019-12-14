@@ -10,7 +10,7 @@ public class PLPTests extends  BaseTest {
     @Test
     public void SignUpSuccessTest () {
 
-        String checkoutButtonLabel = new PLPPage(driver)
+        String checkoutButtonLabel = new PLPPage(getDriver())
                 .openPLPPage()
                 .clickCartButton()
                 .getCheckoutButtonLabel();
