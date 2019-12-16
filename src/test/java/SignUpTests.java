@@ -23,7 +23,7 @@ public class SignUpTests extends  BaseTest {
         signUpPage.setEmailField(signUpPage.getRandomEmail());
 
         signUpPage.setPasswordField("incorrectPassword");
-        signUpPage.setUserName(signUpPage.getRandomUsername());
+//        signUpPage.setUserName(signUpPage.getRandomUsername());
         signUpPage.clickToLoginButton();
 //        signUpPage.setConfirmPasswordField("incorrectPassword");
 //        signUpPage.setZipCode("90066");
@@ -48,7 +48,7 @@ public class SignUpTests extends  BaseTest {
         signUpPage.setEmailField(signUpPage.getRandomEmail());
 
         signUpPage.setPasswordField("incorrectPassword");
-        signUpPage.setUserName(signUpPage.getRandomUsername());
+//        signUpPage.setUserName(signUpPage.getRandomUsername());
         signUpPage.clickToLoginButton();
 //        signUpPage.setConfirmPasswordField("incorrectPassword");
 //        signUpPage.setZipCode("90066");
